@@ -1,3 +1,4 @@
+
 ## What is Vaulty
 
 Vaulty is an open-source secrets manager. The project was inspired by AWS Secret Manager and has a tint of MongoDB. Secret managers provide a way to securely retrieve passwords, certificates, tokens, etc., which replaces hard-coding your "secrets" in your programs. You can learn more about secret managers here: [AWS Secret Manager Intro](https://docs.aws.amazon.com/secretsmanager/latest/userguide/intro.html).
@@ -48,12 +49,12 @@ server:
 ```
 
 General settings:
-* node_name - Allows you to name your vaulty, when you log in via the CLI you will see the name as identifier.
-* db.database- Sets the location of the database.
-* users.delay_unsuccessful_attempts_millis - How much to delay in milliseconds on an unsuccessful login attempt.
+* **node_name** - Allows you to name your vaulty, when you log in via the CLI you will see the name as identifier.
+* **db.database** - Sets the location of the database.
+* **users.delay_unsuccessful_attempts_millis** - How much to delay in milliseconds on an unsuccessful login attempt.
 
 Log settings (Optional):
-* log.filename - You can set where to store the logs, if it's not present it will not sav any logs.
+* **log.filename** - You can set where to store the logs, if it's not present it will not sav any logs.
 
 Secrets settings[^1]:
 * **secrets.rsa_private_key** - RSA 4096 bit private key.
@@ -75,6 +76,17 @@ Server settings:
 Server's TLS settings (Optional)[^3]:
 * **server.tls.certificate** - TLS certificate.
 * **server.tls.key** - TLS key.
+
+#### API
+
+You can use basic HTTP (like curl) to access the secrets with an access key. To authenticate you must include the following header in the HTTP request `Authorization: VAULTY [ACCESS KEY]:[SECRET ACCESS KEY`, example: `Authorization VAULTY tHeeFQ8HtyrVTU51YEBj:U9r7j3rJMHrU6A0hRCkV1VrdEmL1cFc7R2r0HFtU`
+
+| Method | URL | w |
+| - | - | - |
+| GET | /[VAULT] | Lists all secrets in the vault |
+| GET | /[VAULT]/[SECRET NAME] | Retrieve a secret |
+| DELETE | /[VAULT]/[SECRET NAME] | Delete a secret |
+| POST/PUT | /[VAULT]/[SECRET NAME] | Insert a secret |
 
 #### Notes
 
@@ -125,7 +137,7 @@ user.insert({ username: "root", role: "Admin", sg: ["0.0.0.0/0"] })
   * **sg** - Array of security groups.
 * **user.[username].promote** - Promote user to Admin.
 * **user.[username].demote** - Demote user to User.
-* **vault.list - List all vaults.
+* **vault.list** - List all vaults.
 * **vault.[vault].find** - Find a specific vault.
 * **vault.[vault].delete** - Delete a vault, note it will delete all access keys and secrets in it.
 * **access.[vault].list** - List the vault's access keys.
@@ -148,6 +160,8 @@ user.insert({ username: "root", role: "Admin", sg: ["0.0.0.0/0"] })
 
 #### Notes
 When logging in, if you don't specify a username or password, or even both, you will be prompted for them.
+
+To create a vault, you need to insert a secret or an access key; either one will create the vault.
 
 [^1]: To generate the keys, you have to run the script in **secrets/gen-secrets-key.sh**, it will produce **RSA private key**, **RSA public key**, **AES key**, and **AES IV**.
 
