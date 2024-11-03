@@ -163,8 +163,8 @@ When logging in, if you don't specify a username or password, or even both, you 
 
 To create a vault, you need to insert a secret or an access key; either one will create the vault.
 
-[^1]: To generate the keys, you have to run the script in **secrets/gen-secrets-key.sh**, it will produce **RSA private key**, **RSA public key**, **AES key**, and **AES IV**.
+[^1]: To generate the keys, you have to run the script in **secrets/gen-secrets-key.sh**, or **secrets/gen-secrets-key.ps1** for Windows, it will produce **RSA private key**, **RSA public key**, **AES key**, and **AES IV**.
 
-[^2]: To generate the keys, you have to run the script in **secrets/gen-access-keys.sh**, it will produce **ECDSA private key** and **ECDSA public key**.
+[^2]: To generate the keys, you have to run the script in **secrets/gen-access-keys.sh**, or **secrets/gen-access-keys.ps1** for Windows, it will produce **ECDSA private key** and **ECDSA public key**.
 
-[^3]: To generate the keys, you have to run the script in **secrets/gen-server-cert.sh**, it will produce a certificate and a key.
+[^3]: To generate the keys, you have to run the script in **secrets/gen-server-cert.sh**, or **secrets/gen-server-cert.ps1** for Windows, it will produce a **certificate** and a **key**.
